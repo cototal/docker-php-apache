@@ -1,0 +1,5 @@
+export REV=`git rev-parse HEAD`
+export IMG_NAME=$GLR/docker-php-apache:${REV:0:7}-dev
+docker build --build-arg PHP_ENV=development -t $IMG_NAME .
+docker push $IMG_NAME
+
