@@ -1,6 +1,7 @@
 FROM php:7.3-apache
 # Used to load environment php.ini
 ARG PHP_ENV=production
+ARG TZ='America/Chicago'
 
 RUN apt-get update && apt-get install -y unzip libssl-dev libpng-dev libxslt-dev vim \
     libicu-dev libbz2-dev libzip-dev libpq-dev libmariadbclient-dev git openssh-client \
@@ -27,4 +28,5 @@ WORKDIR /app
 
 RUN cp $PHP_INI_DIR/php.ini-$PHP_ENV $PHP_INI_DIR/php.ini \
     && sed -i -e 's/^post_max_size.*/post_max_size = 64M/g' $PHP_INI_DIR/php.ini \
-    && sed -i -e 's/^upload_max_filesize.*/upload_max_filesize = 64M/g' $PHP_INI_DIR/php.ini
+    && sed -i -e 's/^upload_max_filesize.*/upload_max_filesize = 64M/g' $PHP_INI_DIR/php.ini \
+    && sed -i -e 's#^;date.timezone.*#date.timezone = "'$TZ'"#g' $PHP_INI_DIR/php.ini
