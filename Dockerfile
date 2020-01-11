@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4.1-apache
 # Used to load environment php.ini
 ARG PHP_ENV=production
 ARG TZ='America/Chicago'
@@ -7,10 +7,10 @@ RUN apt-get update && apt-get install -y unzip libssl-dev libpng-dev libxslt-dev
     libicu-dev libbz2-dev libzip-dev libpq-dev libmariadbclient-dev git openssh-client \
     libpcre3-dev
 # Install redis with igbinary serialization but without compression
-RUN pecl install oauth-2.0.3 \
-    && pecl install apcu-5.1.17 \
-    && pecl install igbinary-3.0.1 \
-    && printf "yes\nno" | pecl install redis-4.3.0
+RUN pecl install oauth-2.0.4 \
+    && pecl install apcu-5.1.18 \
+    && pecl install igbinary-3.1.0 \
+    && printf "yes\nno\nno" | pecl install redis-5.1.1
 RUN docker-php-ext-install -j$(nproc) gd xsl intl \
     bz2 zip opcache pcntl pdo pdo_mysql pdo_pgsql json xml xmlrpc
 
