@@ -25,7 +25,9 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN mkdir /app
 WORKDIR /app
 
+COPY symfony4.conf /etc/apache2/sites-available/symfony4.conf
 RUN cp $PHP_INI_DIR/php.ini-$PHP_ENV $PHP_INI_DIR/php.ini \
     && sed -i -e 's/^post_max_size.*/post_max_size = 64M/g' $PHP_INI_DIR/php.ini \
     && sed -i -e 's/^upload_max_filesize.*/upload_max_filesize = 64M/g' $PHP_INI_DIR/php.ini \
-    && sed -i -e 's#^;date.timezone.*#date.timezone = "'$TZ'"#g' $PHP_INI_DIR/php.ini
+    && sed -i -e 's#^;date.timezone.*#date.timezone = "'$TZ'"#g' $PHP_INI_DIR/php.ini \
+    && sed -i -e 's#var/www#app#g' /etc/apache2/apache2.conf
