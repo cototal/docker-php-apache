@@ -30,4 +30,5 @@ RUN cp $PHP_INI_DIR/php.ini-$PHP_ENV $PHP_INI_DIR/php.ini \
     && sed -i -e 's/^post_max_size.*/post_max_size = 64M/g' $PHP_INI_DIR/php.ini \
     && sed -i -e 's/^upload_max_filesize.*/upload_max_filesize = 64M/g' $PHP_INI_DIR/php.ini \
     && sed -i -e 's#^;date.timezone.*#date.timezone = "'$TZ'"#g' $PHP_INI_DIR/php.ini \
-    && sed -i -e 's#var/www#app#g' /etc/apache2/apache2.conf
+    && sed -i -e 's#var/www#app#g' /etc/apache2/apache2.conf \
+    && rm /etc/apache2/sites-enabled/000-default.conf
