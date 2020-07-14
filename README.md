@@ -7,3 +7,6 @@ Uses `php:7.x-apache` as the base. Available build tags:
     ```
     docker build --build-arg PHP_ENV=development -t cototal/php-apache:7.3-dev .
     ```
+
+* `ML` - Default: 512M. Use `-1` for no memory limit
+* `TZ` - Default: America/Chicago
