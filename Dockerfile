@@ -1,9 +1,10 @@
-FROM php:7.4.7-apache
+FROM php:7.4.10-apache
 # Used to load environment php.ini
 ARG PHP_ENV=production
 ARG ML=512M
 ARG TZ='America/Chicago'
 
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get install -y unzip libssl-dev libpng-dev libxslt-dev vim \
     libicu-dev libbz2-dev libzip-dev libpq-dev libmariadbclient-dev git openssh-client \
     libpcre3-dev
